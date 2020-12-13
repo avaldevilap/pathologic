@@ -62,3 +62,5 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+INSTALLED_APPS += ["tailwind", "pathologic.theme.apps.ThemeConfig"]
+TAILWIND_APP_NAME = "theme"
