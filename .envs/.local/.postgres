@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=pathologic
+POSTGRES_USER=JDmeqFhVOlejqzOymdtTNnzNwozzNNRb
+POSTGRES_PASSWORD=c16NEYzVNX35KelDP0updasM5rICTMQVZn03R8stoRPhUL90ob7Up7n18v0P5a1o
