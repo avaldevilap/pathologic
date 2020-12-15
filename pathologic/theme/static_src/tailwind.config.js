@@ -2,7 +2,7 @@
 // If you need the full config, get it from here:
 // https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
 module.exports = {
-  purge: [],
+  purge: ["../../templates/**/*.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
@@ -11,4 +11,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+  experimental: {
+    applyComplexClasses: true,
+  },
+};

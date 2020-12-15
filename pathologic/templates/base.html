@@ -36,7 +36,7 @@
 
   <body>
 
-      <nav class="bg-blue-500">
+      <nav class="bg-indigo-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
             <div class="flex items-center">
@@ -46,35 +46,30 @@
 
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline">
-            <a
-              href=""
-              class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700"
-            >
-              Pacientes
-            </a>
-            <a href="" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700">Biopsias</a>
-            <a href="" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700">Citologías</a>
-            <a href="" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700">Necropsias</a>
+            <a href="" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700">Pacientes</a>
+            <a href="" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700">Biopsias</a>
+            <a href="" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700">Citologías</a>
+            <a href="" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700">Necropsias</a>
           </div>
         </div>
 
         {% if request.user.is_authenticated %}
             {# URL provided by django-allauth/account/urls.py #}
-            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
             {# URL provided by django-allauth/account/urls.py #}
-            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
         {% else %}
             {# URL provided by django-allauth/account/urls.py #}
-            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
             {# URL provided by django-allauth/account/urls.py #}
-            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-blue-700" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+            <a class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-50 hover:text-white hover:bg-indigo-600 focus:outline-none focus:text-white focus:bg-indigo-700" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
         {% endif %}
         </div>
         </div>
         </div>
       </nav>
 
-    <div class="container mx-auto">
+    <div class="container">
 
       {% if messages %}
           {% for message in messages %}
@@ -83,7 +78,7 @@
       {% endif %}
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+        <p class="max-w-xs mx-auto">Use this document as a way to quick start any new project.</p>
       {% endblock content %}
 
     </div> <!-- /container -->

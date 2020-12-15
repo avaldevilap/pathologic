@@ -8,41 +8,69 @@
 
 {% block inner %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div class="max-w-xs mx-auto mt-16">
+  <h1 class="text-left text-2xl">{% trans "Sign In" %}</h1>
 
-{% get_providers as socialaccount_providers %}
+  {% get_providers as socialaccount_providers %}
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+  {% if socialaccount_providers %}
+    <p class="py-5 text-left text-base">
+      {% blocktrans with site.name as site_name %}
+        Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a> for a {{ site_name }} account and sign in below:
+      {% endblocktrans %}
+    </p>
 
-<div class="socialaccount_ballot">
+  <div class="socialaccount_ballot">
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+    <ul class="socialaccount_providers">
+      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    </ul>
 
-  <div class="login-or">{% trans 'or' %}</div>
+    <div class="login-or">{% trans 'or' %}</div>
+  </div>
 
-</div>
+  {% include "socialaccount/snippets/login_extra.html" %}
 
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% else %}
+    <p class="py-5 text-left text-base">{% blocktrans %}If you have not created an account yet, then please
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
   {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-</form>
+
+  <form class="space-y-6" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.login|as_crispy_field }}
+    {{ form.password|as_crispy_field }}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        {{ form.remember }}
+        <!-- <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"> -->
+        <label for="{{ form.remember.id_for_label }}" class="ml-2 block text-sm text-gray-900 cursor-pointer">
+          Remember me
+        </label>
+      </div>
+
+      <div class="text-sm">
+        <a href="{% url 'account_reset_password' %}" class="font-medium text-indigo-600 hover:text-indigo-500">
+          {% trans "Forgot Password?" %}
+        </a>
+      </div>
+    </div>
+
+    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+        <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+        </svg>
+      </span>
+      {% trans "Sign In" %}
+    </button>
+  </form>
+</div>
 
 {% endblock %}
 
